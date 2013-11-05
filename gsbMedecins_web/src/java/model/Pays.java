@@ -14,7 +14,7 @@ public class Pays {
     private Collection <Dep> lesDeps;
 
     public Pays() {
-        DAO.getLesDeps();
+        lesDeps = DAO.getLesDeps();
     }
     
     public Collection<Dep> getLesDeps() {
@@ -23,7 +23,7 @@ public class Pays {
     
     public Dep getLeDep(String numDep) {
         for (Dep unDepartement : lesDeps) {
-            if (unDepartement.getNum()==numDep) {
+            if (unDepartement.getNum().equals(numDep)) {
                 return unDepartement;
             }
         }

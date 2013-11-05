@@ -14,9 +14,9 @@ public class Dep {
     private String num;
     private Collection <Med> lesMeds;
 
-    public Dep(String num, Collection<Med>lesMeds) {
+    public Dep(String num, Collection<Med> lesMedecins) {
         this.num = num;
-        this.lesMeds = lesMeds;
+        this.lesMeds = lesMedecins;
     }
     
     public String getNum() {
