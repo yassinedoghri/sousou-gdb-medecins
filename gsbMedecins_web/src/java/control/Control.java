@@ -6,16 +6,29 @@ package control;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Collection;
+import java.util.Map;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Pays;
+import model.Dep;
+import model.Med;
 
 /**
  *
  * @author ydoghri
  */
 public class Control extends HttpServlet {
+
+    private Pays gsb;
+
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
+        gsb = new Pays(); // instancie les objets utiles
+    }
 
     /**
      * Processes requests for both HTTP
@@ -29,23 +42,37 @@ public class Control extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        try {
-            /*
-             * TODO output your page here. You may use following sample code.
-             */
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet control</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet control at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        } finally {            
-            out.close();
+
+        String page;
+        String action = request.getParameter("action");
+
+        if ("listeMedecinsDep".equals(action)) {
+            String choixDep = request.getParameter("choixDep");
+            if (choixDep == null) {
+                Collection<Dep> d = gsb.getLesDeps();
+                request.setAttribute("listDeps", d);
+                page = "selectDep.jsp";
+            } else {
+                Collection<Med> m = gsb.getLeDep(choixDep).getLesMeds();
+                request.setAttribute("leDep", gsb.getLeDep(choixDep));
+                request.setAttribute("listMeds", m);
+                page = "listMedDep.jsp";
+            }
+
+        } else if ("listeMedecinsNom".equals(action)) {
+            String nomMed = request.getParameter("nomMed");
+            if (nomMed == null) {
+                page = "searchMed.jsp";
+            } else {
+                page = "listMedNom.jsp";
+            }
+
+        } else {
+            page = "index.jsp";
         }
+        //appel de la JSP
+
+        request.getRequestDispatcher(page).forward(request, response); // appel de la page en lui envoyant la requête et la réponses
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

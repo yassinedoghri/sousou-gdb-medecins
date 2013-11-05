@@ -9,9 +9,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Médecins GSB</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Rechercher les médecins de GSB</h1>
+        <a href="Control?action=listeMedecinsDep">Rechercher par département</a><br />
+        <a href="Control?action=listeMedecinsNom">Rechercher par nom</a>
     </body>
 </html>
