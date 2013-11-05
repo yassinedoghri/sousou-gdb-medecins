@@ -6,38 +6,34 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.TreeSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class DAO {
-    private static Collection<Dep> d;
+public class DAO {    
 
     public static Collection<Dep> getLesDeps() {
+        Collection<Dep> d = new HashSet<Dep>();
         try {
-
-            java.sql.Statement req;
 
             Connection cnx = Connect.get();
 
             //Requête
-            req = (java.sql.Statement) cnx.createStatement();
-            ResultSet rs;
+            java.sql.Statement req = (java.sql.Statement) cnx.createStatement();
 
-            rs = req.executeQuery("Select DISTINCT departement from medecin order by departement");
-            Collection<Dep> d = new TreeSet<Dep>();
+            ResultSet rs = req.executeQuery("Select DISTINCT departement from medecin order by departement");
 
             //Parcours
             while (rs.next()) {
-                String dep = rs.getString(1);
+                String dep = rs.getString("departement");
 
 
-                Collection<Med> m = new HashSet<Med>();
+                
                 Statement req2;
                 req2 = cnx.createStatement();
                 ResultSet rs2 = req2.executeQuery("select id, nom, prenom, adresse, tel, specialitecomplementaire"
                         + " from medecin where departement='" + dep + "'");
 
+                Collection<Med> m = new HashSet<Med>();
                 while (rs2.next()) {
                     String id = rs2.getString("id");
                     String nom = rs2.getString("nom");
@@ -48,7 +44,7 @@ public class DAO {
                     m.add(new Med(nom, prenom, adresse, tel, spe, id));
                 }
                 d.add(new Dep(dep, m));
-                
+
                 rs2.close();
             }
 

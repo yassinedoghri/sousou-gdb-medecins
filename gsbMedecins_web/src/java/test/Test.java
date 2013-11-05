@@ -13,7 +13,6 @@ import model.Pays;
 public class Test {
     public static void main(String[] args) {
         Pays p = new Pays();
-        System.out.println(p.getLeDep("5"));
-        System.out.println("coucou");
+        System.out.println(p.getLeDep("5").getNum());
     }
 }
