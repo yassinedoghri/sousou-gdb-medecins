@@ -22,5 +22,6 @@
             </c:forEach>
             </select>
             <input type="submit">
+        </form>
     </body>
 </html>
