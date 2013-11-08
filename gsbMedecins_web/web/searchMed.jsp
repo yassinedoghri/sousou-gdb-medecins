@@ -15,6 +15,7 @@
     <body>
         <form action="Control?action=listeMedecinsNom"method="POST">
             <legend>Rechercher un médecin par nom</legend>
+            <label for="nomMed">Nom du médecin : </label>
             <input type="text" name="nomMed">
             <input type="submit">
         </form>
