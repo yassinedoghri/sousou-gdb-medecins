@@ -8,7 +8,8 @@ package model;
  *
  * @author ydoghri
  */
-public class Med {
+public class Med implements Comparable<Med> {
+
     private String nom;
     private String prenom;
     private String adresse;
@@ -44,8 +45,13 @@ public class Med {
     public String getTel() {
         return tel;
     }
-    
-//    public compareTo(Object t) {
-//        
-//    }
+
+    @Override
+    public int compareTo(Med m) {
+        if (nom.compareTo(m.nom) == 0) { //s'ils ont le même nom
+            return prenom.compareTo(m.prenom); //comparer les prénoms
+        } else {
+            return nom.compareTo(m.nom); //sinon comparer les noms
+        }
+    }
 }

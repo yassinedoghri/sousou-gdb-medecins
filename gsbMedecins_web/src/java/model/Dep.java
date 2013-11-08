@@ -10,7 +10,7 @@ import java.util.Collection;
  *
  * @author ydoghri
  */
-public class Dep {
+public class Dep implements Comparable<Dep>{
     private String num;
     private Collection <Med> lesMeds;
 
@@ -23,9 +23,9 @@ public class Dep {
         return num;
     }
     
-//    public compareTo(Object t) {
-//        
-//    }
+    public int compareTo(Dep d) {
+        return num.compareTo(d.num);
+    }
 
     public Collection<Med> getLesMeds() {
         return lesMeds;
