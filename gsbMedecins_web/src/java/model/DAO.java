@@ -5,14 +5,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Collection;
-import java.util.HashSet;
+import java.util.TreeSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class DAO {    
 
     public static Collection<Dep> getLesDeps() {
-        Collection<Dep> d = new HashSet<Dep>();
+        Collection<Dep> d = new TreeSet<Dep>();
         try {
 
             Connection cnx = Connect.get();
@@ -25,15 +25,12 @@ public class DAO {
             //Parcours
             while (rs.next()) {
                 String dep = rs.getString("departement");
-
-
-                
                 Statement req2;
                 req2 = cnx.createStatement();
                 ResultSet rs2 = req2.executeQuery("select id, nom, prenom, adresse, tel, specialitecomplementaire"
                         + " from medecin where departement='" + dep + "'");
 
-                Collection<Med> m = new HashSet<Med>();
+                Collection<Med> m = new TreeSet<Med>();
                 while (rs2.next()) {
                     String id = rs2.getString("id");
                     String nom = rs2.getString("nom");
