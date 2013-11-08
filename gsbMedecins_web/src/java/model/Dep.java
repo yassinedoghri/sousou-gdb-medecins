@@ -5,6 +5,7 @@
 package model;
 
 import java.util.Collection;
+import java.util.HashSet;
 
 /**
  *
@@ -29,6 +30,16 @@ public class Dep implements Comparable<Dep>{
 
     public Collection<Med> getLesMeds() {
         return lesMeds;
+    }
+    
+    public Collection getLesMedsR(String Med) {
+        Collection<Med> medSearch = new HashSet<Med>();
+        for(Med unMed : lesMeds) {
+            if (unMed.getNom().contains(Med)) {
+                medSearch.add(unMed);
+            }
+        }
+        return medSearch;
     }
 
 }
