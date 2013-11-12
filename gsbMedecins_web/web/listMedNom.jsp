@@ -1,41 +1,33 @@
 <%-- 
-    Document   : listMedName
-    Created on : 5 nov. 2013, 11:46:53
+    Document   : listMedNom
+    Created on : 12 nov. 2013, 12:35:19
     Author     : ydoghri
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <div align="center">
-            <h1>Liste des m√©decins par nom</h1>
-            <h3>R√©sultat(s) pour "<i>${nomR}</i>"</h3>
-            <table>
-                <tr>
-                    <th>Nom</th>
-                    <th>Pr√©nom</th>
-                    <th>Adresse</th>
-                    <th>Sp√©cialit√©</th>
-                    <th>T√©l√©phone</th>
-                </tr>
-                <c:forEach var="med" items="${listMeds}">
-                    <tr>
-                        <td>${med.nom}</td>
-                        <td>${med.prenom}</td>
-                        <td>${med.adresse}</td>
-                        <td>${med.spe}</td>
-                        <td>${med.tel}</td>
-                    </tr>
-                </c:forEach>
-            </table>
-            <br>
-            <a href="Control?action=listeMedecinsNom">‚Üê Retour √† la recherche</a>
-        </div>
-    </body>
-</html>
+<jsp:include page="entete.jsp"/>
+<div id="contenu">
+    <h3>RÈsultat(s) pour "<i>${nomR}</i>"</h3>
+    <table class="listeLegere">
+        <caption>Liste des mÈdecins par nom</caption>
+        <tr>
+            <th>Nom</th>
+            <th>PrÈnom</th>
+            <th>Adresse</th>
+            <th>SpÈcialitÈ</th>
+            <th>TÈlÈphone</th>
+        </tr>
+        <c:forEach var="med" items="${listMeds}">
+            <tr>
+                <td>${med.nom}</td>
+                <td>${med.prenom}</td>
+                <td>${med.adresse}</td>
+                <td>${med.spe}</td>
+                <td>${med.tel}</td>
+            </tr>
+        </c:forEach>
+    </table>
+    <br />
+    <a href="Control?action=listeMedecinsNom">Retour ‡ la recherche</a>
+</div>
+<jsp:include page="pied.jsp"/>

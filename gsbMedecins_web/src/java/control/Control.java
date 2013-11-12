@@ -47,7 +47,7 @@ public class Control extends HttpServlet {
 
         if ("listeMedecinsDep".equals(action)) {
             String choixDep = request.getParameter("choixDep");
-            if (choixDep == null) {
+            if (choixDep == null || choixDep == "-1") {
                 Collection<Dep> d = gsb.getLesDeps();
                 request.setAttribute("listDeps", d);
                 page = "selectDep.jsp";
