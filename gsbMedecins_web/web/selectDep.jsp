@@ -1,27 +1,32 @@
 <%-- 
-    Document   : listMedDep
-    Created on : 5 nov. 2013, 11:46:20
+    Document   : v_selectDep
+    Created on : 12 nov. 2013, 12:11:03
     Author     : ydoghri
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <form action="Control?action=listeMedecinsDep"method="POST">
-            <legend>Veuillez choisir un dÃ©partement</legend>
-            <select name="choixDep">
-                <option value="-1">Choisir un dÃ©partement...</option>
-            <c:forEach var="dep" items="${listDeps}">
-                <option value="${dep.num}">${dep.num}</option>
-            </c:forEach>
-            </select>
-            <input type="submit">
-        </form>
-    </body>
-</html>
+<jsp:include page="entete.jsp"/>
+<div id="contenu">
+    <h2>Recherche des médecins par département</h2>
+    <h3>Département à sélectionner : </h3>
+    <form action="Control?action=listeMedecinsDep" method="post">
+        <div class="corpsForm">
+            <p>
+                <label for="lstMois" accesskey="n">Département : </label>
+                <select name="choixDep">
+                    <option value="-1">Choisir un département...</option>
+                    <c:forEach var="dep" items="${listDeps}">
+                        <option value="${dep.num}">${dep.num}</option>
+                    </c:forEach>
+                </select>
+            </p>
+        </div>
+        <div class="piedForm">
+            <p>
+                <input id="ok" type="submit" value="Valider" size="20" />
+                <input id="annuler" type="reset" value="Effacer" size="20" />
+            </p> 
+        </div>
+
+    </form>
+<jsp:include page="pied.jsp"/>
