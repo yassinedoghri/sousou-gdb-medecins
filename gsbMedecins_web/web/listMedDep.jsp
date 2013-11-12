@@ -13,24 +13,26 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Médecins pour le département n°${leDep.num}</h1>
-        <table>
-            <tr>
-                <th>Nom</th>
-                <th>Prénom</th>
-                <th>Adresse</th>
-                <th>Spécialité</th>
-                <th>Téléphone</th>
-            </tr>
-            <c:forEach var="med" items="${listMeds}">
+        <div align="center">
+            <h1>Médecins pour le département n°${leDep.num}</h1>
+            <table>
                 <tr>
-                    <td>${med.nom}</td>
-                    <td>${med.prenom}</td>
-                    <td>${med.adresse}</td>
-                    <td>${med.spe}</td>
-                    <td>${med.tel}</td>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Adresse</th>
+                    <th>Spécialité</th>
+                    <th>Téléphone</th>
                 </tr>
-            </c:forEach>
-        </table>
+                <c:forEach var="med" items="${listMeds}">
+                    <tr>
+                        <td>${med.nom}</td>
+                        <td>${med.prenom}</td>
+                        <td>${med.adresse}</td>
+                        <td>${med.spe}</td>
+                        <td>${med.tel}</td>
+                    </tr>
+                </c:forEach>
+            </table>
+        </div>
     </body>
 </html>
