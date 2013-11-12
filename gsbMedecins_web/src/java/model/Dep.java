@@ -32,10 +32,10 @@ public class Dep implements Comparable<Dep>{
         return lesMeds;
     }
     
-    public Collection getLesMedsR(String Med) {
+    public Collection getLesMedsR(String med) {
         Collection<Med> medSearch = new HashSet<Med>();
         for(Med unMed : lesMeds) {
-            if (unMed.getNom().contains(Med)) {
+            if (unMed.getNom().startsWith(med)) {
                 medSearch.add(unMed);
             }
         }

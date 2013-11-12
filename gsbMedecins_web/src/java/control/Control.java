@@ -5,9 +5,8 @@
 package control;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Collection;
-import java.util.Map;
+import java.util.TreeSet;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -64,6 +63,13 @@ public class Control extends HttpServlet {
             if (nomMed == null) {
                 page = "searchMed.jsp";
             } else {
+                Collection<Med> m = new TreeSet<Med>();
+                for (Dep unDep : gsb.getLesDeps()) {
+                    Collection medR = unDep.getLesMedsR(nomMed);
+                    m.addAll(medR);
+                }
+                request.setAttribute("listMeds", m);
+                request.setAttribute("nomR", nomMed);
                 page = "listMedNom.jsp";
             }
 
