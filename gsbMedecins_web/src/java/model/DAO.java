@@ -9,7 +9,7 @@ import java.util.TreeSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class DAO {    
+public class DAO {
 
     public static Collection<Dep> getLesDeps() {
         Collection<Dep> d = new TreeSet<Dep>();
@@ -18,41 +18,60 @@ public class DAO {
             Connection cnx = Connect.get();
 
             //Requête
-            java.sql.Statement req = (java.sql.Statement) cnx.createStatement();
-
-            ResultSet rs = req.executeQuery("Select DISTINCT departement from medecin order by departement");
-
-            //Parcours
-            while (rs.next()) {
-                String dep = rs.getString("departement");
-                Statement req2;
-                req2 = cnx.createStatement();
-                ResultSet rs2 = req2.executeQuery("select id, nom, prenom, adresse, tel, specialitecomplementaire"
-                        + " from medecin where departement='" + dep + "'");
-
-                Collection<Med> m = new TreeSet<Med>();
-                while (rs2.next()) {
-                    String id = rs2.getString("id");
-                    String nom = rs2.getString("nom");
-                    String prenom = rs2.getString("prenom");
-                    String adresse = rs2.getString("adresse");
-                    String tel = rs2.getString("tel");
-                    String spe = rs2.getString("specialitecomplementaire");
-                    m.add(new Med(nom, prenom, adresse, tel, spe, id));
-                }
-                d.add(new Dep(dep, m));
-
-                rs2.close();
+            java.sql.Statement reqD = (java.sql.Statement) cnx.createStatement();
+            ResultSet rsD = reqD.executeQuery("Select DISTINCT departement from medecin");
+            while (rsD.next()) {
+                String dep = rsD.getString("departement");
+                d.add(new Dep(dep));
             }
-
-            rs.close();
-
+            rsD.close();
             //fermeture de la B de D
-            req.close();
-
+            reqD.close();
         } catch (SQLException ex) {
             Logger.getLogger(Pays.class.getName()).log(Level.SEVERE, null, ex);
         }
         return d;
+    }
+
+    public static Collection<Spe> getLesSpes() {
+        Collection<Spe> s = new TreeSet<Spe>();
+        try {
+            Connection cnx = Connect.get();
+
+            java.sql.Statement reqS = (java.sql.Statement) cnx.createStatement();
+            ResultSet rsS = reqS.executeQuery("Select DISTINCT specialitecomplementaire from medecin");
+            while (rsS.next()) {
+                String spe = rsS.getString("specialitecomplementaire");
+                s.add(new Spe(spe));
+            }
+            rsS.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Pays.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return s;
+    }
+
+    public static Collection<Med> getLesMeds() {
+        Collection<Med> m = new TreeSet<Med>();
+        try {
+            Connection cnx = Connect.get();
+
+            Statement reqM = cnx.createStatement();
+            ResultSet rsM = reqM.executeQuery("select * form medecin");
+            while (rsM.next()) {
+                String id = rsM.getString("id");
+                String nom = rsM.getString("nom");
+                String prenom = rsM.getString("prenom");
+                String adresse = rsM.getString("adresse");
+                String tel = rsM.getString("tel");
+                String spe = rsM.getString("specialitecomplementaire");
+                String dep = rsM.getString("departement");
+                m.add(new Med(nom, prenom, adresse, tel, spe, dep, id));
+            }
+            rsM.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Pays.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return m;
     }
 }

@@ -16,21 +16,20 @@ public class Dep implements Comparable<Dep> {
     private String num;
     private Collection<Med> lesMeds;
 
-    public Dep(String num, Collection<Med> lesMedecins) {
+    public Dep(String num) {
         this.num = num;
-        this.lesMeds = lesMedecins;
     }
 
     public String getNum() {
         return num;
     }
 
-    public int compareTo(Dep d) {
-        return num.compareTo(d.num);
-    }
-
     public Collection<Med> getLesMeds() {
         return lesMeds;
+    }
+    
+    public void addLesMeds() {
+        
     }
 
     public Collection getLesMedsR(String med) {
@@ -47,5 +46,10 @@ public class Dep implements Comparable<Dep> {
         String firstLetter = data.substring(0, 1).toUpperCase();
         String restLetters = data.substring(1).toLowerCase();
         return firstLetter + restLetters;
+    }
+
+    @Override
+    public int compareTo(Dep d) {
+        return num.compareTo(d.num);
     }
 }
