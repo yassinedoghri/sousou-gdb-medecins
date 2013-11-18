@@ -12,13 +12,21 @@ import java.util.Collection;
  */
 public class Pays {
     private Collection <Dep> lesDeps;
+    private Collection <Spe> lesSpes;
+    private Collection <Med> lesMeds;
 
     public Pays() {
         lesDeps = DAO.getLesDeps();
+        lesSpes = DAO.getLesSpes();
+        lesMeds = DAO.getLesMeds();
     }
     
     public Collection<Dep> getLesDeps() {
         return lesDeps;
+    }
+    
+    public Collection<Spe> getLesSpes() {
+        return lesSpes;
     }
     
     public Dep getLeDep(String numDep) {

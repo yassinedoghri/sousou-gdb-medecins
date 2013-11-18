@@ -15,14 +15,16 @@ public class Med implements Comparable<Med> {
     private String adresse;
     private String tel;
     private String spe;
+    private String dep;
     private String id;
 
-    public Med(String nom, String prenom, String adresse, String tel, String spe, String id) {
+    public Med(String nom, String prenom, String adresse, String tel, String spe, String dep, String id) {
         this.nom = nom;
         this.prenom = prenom;
         this.adresse = adresse;
         this.tel = tel;
         this.spe = spe;
+        this.dep = dep;
         this.id = id;
     }
 
