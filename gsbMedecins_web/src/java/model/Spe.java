@@ -5,6 +5,7 @@
 package model;
 
 import java.util.Collection;
+import java.util.TreeSet;
 
 /**
  *
@@ -13,7 +14,7 @@ import java.util.Collection;
 public class Spe implements Comparable<Spe> {
 
     private String libelle;
-    private Collection<Med> lesMeds;
+    private Collection<Med> lesMeds = new TreeSet<Med>();
 
     public Spe(String libelle) {
         this.libelle = libelle;
