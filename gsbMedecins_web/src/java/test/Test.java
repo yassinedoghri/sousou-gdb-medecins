@@ -15,7 +15,6 @@ public class Test {
         Pays p = new Pays();
         System.out.println(p.getLesDeps());
         System.out.println(p.getLesSpes());
-        System.out.println(p.getLesMeds());
         System.out.println("coucou");
     }
 }
