@@ -39,12 +39,14 @@ public class DAO {
             Connection cnx = Connect.get();
 
             java.sql.Statement reqS = (java.sql.Statement) cnx.createStatement();
-            ResultSet rsS = reqS.executeQuery("Select DISTINCT specialitecomplementaire from medecin");
+            ResultSet rsS = reqS.executeQuery("Select DISTINCT specialitecomplementaire from medecin where specialitecomplementaire is not null");
             while (rsS.next()) {
                 String spe = rsS.getString("specialitecomplementaire");
                 s.add(new Spe(spe));
             }
             rsS.close();
+            //fermeture de la B de D
+            reqS.close();
         } catch (SQLException ex) {
             Logger.getLogger(Pays.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -57,7 +59,7 @@ public class DAO {
             Connection cnx = Connect.get();
 
             Statement reqM = cnx.createStatement();
-            ResultSet rsM = reqM.executeQuery("select * form medecin");
+            ResultSet rsM = reqM.executeQuery("select * from medecin");
             while (rsM.next()) {
                 String id = rsM.getString("id");
                 String nom = rsM.getString("nom");
@@ -69,6 +71,8 @@ public class DAO {
                 m.add(new Med(nom, prenom, adresse, tel, spe, dep, id));
             }
             rsM.close();
+            //fermeture de la B de D
+            reqM.close();
         } catch (SQLException ex) {
             Logger.getLogger(Pays.class.getName()).log(Level.SEVERE, null, ex);
         }

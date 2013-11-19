@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.Pays;
 import model.Dep;
 import model.Med;
+import model.Spe;
 
 /**
  *
@@ -47,7 +48,7 @@ public class Control extends HttpServlet {
 
         if ("listeMedecinsDep".equals(action)) {
             String choixDep = request.getParameter("choixDep");
-            if (choixDep == null || choixDep == "-1") {
+            if (choixDep == null || choixDep.equals("-1")) {
                 Collection<Dep> d = gsb.getLesDeps();
                 request.setAttribute("listDeps", d);
                 page = "selectDep.jsp";
@@ -73,6 +74,18 @@ public class Control extends HttpServlet {
                 page = "listMedNom.jsp";
             }
 
+        } else if ("listeMedecinsSpe".equals(action)) {
+            String choixSpe = request.getParameter("choixSpe");
+            if (choixSpe == null || choixSpe.equals("-1")) {
+                Collection<Spe> s = gsb.getLesSpes();
+                request.setAttribute("listSpes", s);
+                page = "selectSpe.jsp";
+            } else {
+                Collection<Med> m = gsb.getLaSpe(choixSpe).getLesMeds();
+                request.setAttribute("laSpe", gsb.getLaSpe(choixSpe));
+                request.setAttribute("listMeds", m);
+                page = "listMedSpe.jsp";
+            }
         } else {
             page = "index.jsp";
         }

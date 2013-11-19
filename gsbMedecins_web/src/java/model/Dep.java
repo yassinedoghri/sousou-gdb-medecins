@@ -5,6 +5,7 @@
 package model;
 
 import java.util.Collection;
+import java.util.TreeSet;
 import java.util.HashSet;
 
 /**
@@ -14,7 +15,7 @@ import java.util.HashSet;
 public class Dep implements Comparable<Dep> {
 
     private String num;
-    private Collection<Med> lesMeds;
+    private Collection<Med> lesMeds = new TreeSet<Med>();
 
     public Dep(String num) {
         this.num = num;
@@ -27,9 +28,9 @@ public class Dep implements Comparable<Dep> {
     public Collection<Med> getLesMeds() {
         return lesMeds;
     }
-    
-    public void addLesMeds() {
-        
+
+    public void addUnMed(Med unMed) {
+        lesMeds.add(unMed);
     }
 
     public Collection getLesMedsR(String med) {

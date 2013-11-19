@@ -43,6 +43,10 @@ public class Med implements Comparable<Med> {
     public String getSpe() {
         return spe;
     }
+    
+    public String getDep() {
+        return dep;
+    }
 
     public String getTel() {
         return tel;

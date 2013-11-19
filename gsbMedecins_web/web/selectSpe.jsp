@@ -7,16 +7,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="entete.jsp"/>
 <div id="contenu">
-    <h2>Recherche des médecins par département</h2>
-    <h3>Département à sélectionner : </h3>
-    <form action="Control?action=listeMedecinsDep" method="post">
+    <h2>Recherche des médecins par spécialité</h2>
+    <h3>Spécialité à sélectionner : </h3>
+    <form action="Control?action=listeMedecinsSpe" method="post">
         <div class="corpsForm">
             <p>
-                <label for="lstDeps" accesskey="n">Département : </label>
-                <select id="lstDeps" name="choixDep">
-                    <option value="-1">Choisir un département...</option>
-                    <c:forEach var="dep" items="${listDeps}">
-                        <option value="${dep.num}">${dep.num}</option>
+                <label for="lstSpes" accesskey="n">Spécialité : </label>
+                <select id="lstSpes" name="choixSpe">
+                    <option value="-1">Choisir une spécialité...</option>
+                    <c:forEach var="spe" items="${listSpes}">
+                        <option value="${spe.libelle}">${spe.libelle}</option>
                     </c:forEach>
                 </select>
             </p>
