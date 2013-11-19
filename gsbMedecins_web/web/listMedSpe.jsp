@@ -10,7 +10,7 @@
     <a href="Control?action=listeMedecinsSpe">Retour à la sélection</a>
     <br />
     <table class="listeLegere">
-        <caption>Médecins pour la spécialité <i>${laSpe.libelle}</i></caption>
+        <caption>Médecins pour la spécialité "<i>${laSpe.libelle}</i>"</caption>
         <tr>
             <th>Nom</th>
             <th>Prénom</th>

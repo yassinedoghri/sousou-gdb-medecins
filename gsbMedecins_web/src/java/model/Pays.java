@@ -14,13 +14,12 @@ public class Pays {
 
     private Collection<Dep> lesDeps;
     private Collection<Spe> lesSpes;
-    private Collection<Med> lesMeds;
+    
 
     public Pays() {
         lesDeps = DAO.getLesDeps();
         lesSpes = DAO.getLesSpes();
-        lesMeds = DAO.getLesMeds();
-        this.assocMedecins();
+        this.assocMedecins(DAO.getLesMeds());
     }
 
     public Collection<Dep> getLesDeps() {
@@ -30,16 +29,13 @@ public class Pays {
     public Collection<Spe> getLesSpes() {
         return lesSpes;
     }
-    
-    public Collection<Med> getLesMeds() {
-        return lesMeds;
-    }
 
-    public void assocMedecins() {
+    private void assocMedecins(Collection<Med> lesMeds) {
         for (Med unMed : lesMeds) {
             getLeDep(unMed.getDep()).addUnMed(unMed);
-            if (getLaSpe(unMed.getSpe()) != null) {
-                getLaSpe(unMed.getSpe()).addUnMed(unMed);
+            Spe uneSpe = getLaSpe(unMed.getSpe());
+            if (uneSpe != null) {
+                uneSpe.addUnMed(unMed);
             }
         }
     }
